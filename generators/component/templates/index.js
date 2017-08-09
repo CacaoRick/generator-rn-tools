@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { StyleSheet, View, Text } from "react-native"
 
-export default class <%= ComponentName %> extends React.Component {
+export default class <%= componentName %> extends React.Component {
   static propTypes = {
     // prop: PropTypes.any,
   }
@@ -10,7 +10,7 @@ export default class <%= ComponentName %> extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>{"Hello <%= ComponentName %>"}</Text>
+        <Text>{"Hello <%= componentName %>"}</Text>
       </View>
     )
   }
