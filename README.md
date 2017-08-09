@@ -1,11 +1,11 @@
-# Generator React Native
+# Generator RN Tool
 [Yeoman](http://yeoman.io) generator for [React Native](https://facebook.github.io/react-native/), Help you install npm dependencies and generator file structure in project which created by [react-native-cli](https://facebook.github.io/react-native/docs/getting-started.html#installing-dependencies) or [create-react-native-app](https://facebook.github.io/react-native/docs/getting-started.html).
 
 ## Installation
 
 ```bash
 npm install -g yo
-npm install -g generator-react-native-cacaorick
+npm install -g generator-rn-tool
 ```
 
 ## Create React Native project
@@ -21,7 +21,7 @@ react-native init projectName
 `cd` to your project.
 Create file structure.
 ```bash
-yo react-native-cacaorick
+yo rn-tool
 ```
 Select project type.
 
