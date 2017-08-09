@@ -1,6 +1,6 @@
 {
   "name": "generator-rn-tool",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Yeoman generator for React Native",
   "license": "MIT",
   "keywords": [
