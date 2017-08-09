@@ -2,9 +2,12 @@ import React from "react"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { StyleSheet, View, Text } from "react-native"
-import BackgroundGeolocation from "react-native-background-geolocation"
 
 class Main extends React.Component {
+  static propTypes = {
+    // prop: PropTypes.any,
+  }
+
   render() {
     return (
       <View style={styles.container}>
