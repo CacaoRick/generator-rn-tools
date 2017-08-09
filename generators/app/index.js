@@ -37,6 +37,7 @@ module.exports = class extends Generator {
       "react-native-router-flux",
       "react-redux",
       "redux",
+      "redux-immutable",
       "redux-thunk"
     ])
   }

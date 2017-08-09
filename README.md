@@ -36,6 +36,7 @@ Generator will install dependencies and create file structure in your project (s
 * react-native-router-flux
 * react-redux
 * redux
+* redux-immutable
 * redux-thunk
 
 ### File structure
