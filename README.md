@@ -72,7 +72,7 @@ Generator will install dependencies and create file structure in your project (s
 ## Other Generator
 ### Component
 
-Create a component.
+Create a component in `src/components/index.js`.
 
 ```bash
 yo react-native-cacaorick:component componentName
@@ -80,7 +80,7 @@ yo react-native-cacaorick:component componentName
 
 ### Container
 
-Create a component, export with react-redux connect().
+Create a component in `src/containers/containerName/index.js`, export with react-redux connect().
 
 ```bash
 yo react-native-cacaorick:container containerName
