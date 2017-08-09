@@ -13,9 +13,9 @@ npm install -g generator-rn-tool
 Create project.
 
 ```bash
-create-react-native-app projectName
+create-react-native-app appName
 # or
-react-native init projectName
+react-native init appName
 ```
 
 `cd` to your project.
