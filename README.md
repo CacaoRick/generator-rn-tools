@@ -25,7 +25,7 @@ yo rn-tool
 ```
 Select project type.
 
-![](/images/react-native-cacaorick.png)
+![](/images/prompt-list.png)
 
 Generator will install dependencies and create file structure in your project (see below).
 
@@ -75,7 +75,7 @@ Generator will install dependencies and create file structure in your project (s
 Create a component in `src/components/index.js`.
 
 ```bash
-yo react-native-cacaorick:component componentName
+yo rn-tool:component componentName
 ```
 
 ### Container
@@ -83,5 +83,5 @@ yo react-native-cacaorick:component componentName
 Create a component in `src/containers/containerName/index.js`, export with react-redux connect().
 
 ```bash
-yo react-native-cacaorick:container containerName
+yo rn-tool:container containerName
 ```
