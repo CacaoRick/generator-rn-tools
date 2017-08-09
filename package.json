@@ -1,0 +1,27 @@
+{
+  "name": "generator-react-native-cacaorick",
+  "version": "0.1.0",
+  "description": "Yeoman generator for React Native",
+  "license": "MIT",
+  "keywords": [
+    "yeoman-generator",
+    "react-native",
+    "expo"
+  ],
+  "author": {
+    "name": "CacaoRick"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CacaoRick/generator-react-native-cacaorick"
+  },
+  "bugs": {
+    "url": "https://github.com/CacaoRick/generator-react-native-cacaorick/issues"
+  },
+  "files": [
+    "generators"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^1.1.1"
+  }
+}
