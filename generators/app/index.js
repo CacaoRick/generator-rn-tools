@@ -1,3 +1,4 @@
+const mkdirp = require("mkdirp");
 const Generator = require("yeoman-generator")
 
 module.exports = class extends Generator {
@@ -52,5 +53,11 @@ module.exports = class extends Generator {
       this.templatePath(".eslintrc"),
       this.destinationPath(".eslintrc")
     )
+
+    // 建立空資料夾
+    mkdirp("src/components")
+    mkdirp("src/images")
+    mkdirp("src/lib")
+    mkdirp("src/models")
   }
 }
