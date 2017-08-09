@@ -54,6 +54,9 @@ Generator will install dependencies and create file structure in your project (s
 │   │    │    └─index.js
 │   │    └─Main/
 │   │         └─index.js
+│   ├─images/
+│   ├─lib/
+│   ├─models/
 │   └─redux/
 │        ├─main/
 │        │    ├─mainActions.js
