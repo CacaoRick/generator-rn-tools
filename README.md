@@ -29,7 +29,7 @@ Select project type.
 
 Generator will install dependencies and create file structure in your project (see below).
 
-## Included dependencies
+### Included dependencies
 
 * immutable
 * prop-types
@@ -38,7 +38,7 @@ Generator will install dependencies and create file structure in your project (s
 * redux
 * redux-thunk
 
-## File structure
+### File structure
 
 ```text
 ├─src/
@@ -67,4 +67,21 @@ Generator will install dependencies and create file structure in your project (s
 ├─App.js            <-- Only in Expo App
 ├─index.android.js  <-- Only in Standard App
 └─index.ios.js      <-- Only in Standard App
+```
+
+## Other Generator
+### Component
+
+Create a component.
+
+```bash
+yo react-native-cacaorick:component componentName
+```
+
+### Container
+
+Create a component, export with react-redux connect().
+
+```bash
+yo react-native-cacaorick:container containerName
 ```
