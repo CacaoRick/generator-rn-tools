@@ -11,7 +11,7 @@ module.exports = class extends Generator {
     let componentName = this.options.componentName;
     this.fs.copyTpl(
       this.templatePath("index.js"),
-      this.destinationPath(componentName + ".js"),
+      this.destinationPath("components/" + componentName + ".js"),
       { componentName: componentName }
     )
   }
