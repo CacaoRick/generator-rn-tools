@@ -21,7 +21,7 @@ react-native init projectName
 `cd` to your project.
 Create file structure.
 ```bash
-yo rn-tool
+yo rn-tool appName
 ```
 Select project type.
 
