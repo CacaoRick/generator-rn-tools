@@ -2,6 +2,12 @@ const mkdirp = require("mkdirp");
 const Generator = require("yeoman-generator")
 
 module.exports = class extends Generator {
+  constructor(args, options) {
+    super(args, options)
+
+    this.argument("appName", { type: String, required: true })
+  }
+
   prompting() {
     const EXPO = "Expo (create-react-native-app)"
     const STANDARD = "Standard (react-native-cli)"
@@ -20,11 +26,13 @@ module.exports = class extends Generator {
       } else {
         this.fs.copy(
           this.templatePath("index.android.js"),
-          this.destinationPath("index.android.js")
+          this.destinationPath("index.android.js"),
+          { appName: this.options.appName }
         )
         this.fs.copy(
           this.templatePath("index.ios.js"),
-          this.destinationPath("index.ios.js")
+          this.destinationPath("index.ios.js"),
+          { appName: this.options.appName }
         )
       }
     })
