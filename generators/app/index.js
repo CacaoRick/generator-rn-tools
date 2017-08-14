@@ -76,13 +76,13 @@ module.exports = class extends Generator {
 
   _copyEnterPoint() {
     if (this.options.expo) {
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath("App.js"),
         this.destinationPath("App.js"),
         { path: this.options.typescript ? "build" : "src" }
       )
     } else {
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath("index.android.js"),
         this.destinationPath("index.android.js"),
         {
@@ -90,7 +90,7 @@ module.exports = class extends Generator {
           path: this.options.typescript ? "build" : "src",
         }
       )
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath("index.ios.js"),
         this.destinationPath("index.ios.js"),
         {
