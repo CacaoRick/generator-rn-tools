@@ -6,14 +6,12 @@ module.exports = class extends Generator {
     super(args, options)
 
     this.argument("appname", { type: String, required: false, default: this.determineAppname() })
+    this.argument("yarn", { type: Boolean, required: false, default: false })
     this.argument("expo", { type: Boolean, required: false, default: false })
     this.argument("typescript", { type: Boolean, required: false, default: false })
   }
 
   prompting() {
-    const EXPO = "Expo (create-react-native-app)"
-    const STANDARD = "Standard (react-native-cli)"
-
     const prompts = []
     prompts.push({
       type: "input",
@@ -22,20 +20,27 @@ module.exports = class extends Generator {
       default: this.determineAppname(),
     })
 
+    const YARN = "yarn, use yarn add instead npm install?"
+    const EXPO = "expo, this project is create by create-react-native-app?"
+    const TYPESCRIPT = "typescript, use typescript"
+
     prompts.push({
       type: "checkbox",
       name: "options",
       message: "Select options for your project",
-      choices: ["expo", "typescript"],
+      choices: [ YARN, EXPO, TYPESCRIPT ],
     })
     return this.prompt(prompts)
       .then((answers) => {
         this.options.appname = answers.appname
         answers.options.forEach((option) => {
-          if (option === "expo") {
+          if (option === YARN) {
+            this.options.yarn = true
+          }
+          if (option === EXPO) {
             this.options.expo = true
           }
-          if (option === "typescript") {
+          if (option === TYPESCRIPT) {
             this.options.typescript = true
           }
         });
@@ -59,7 +64,7 @@ module.exports = class extends Generator {
   }
 
   _installDependencies() {
-    this.yarnInstall([
+    const dependencies = [
       "immutable",
       "prop-types",
       "react-native-router-flux",
@@ -67,11 +72,45 @@ module.exports = class extends Generator {
       "redux",
       "redux-immutable",
       "redux-thunk"
-    ])
+    ]
+    if (this.options.yarn) {
+      this.yarnInstall(dependencies)
+    } else {
+      this.npmInstall(dependencies, {"save": true})
+    }
   }
 
   _installTypescriptDependencies() {
+    const dependencies = [
+      "immutable",
+      "react-native-router-flux",
+      "react-redux",
+      "redux",
+      "redux-immutable",
+      "redux-saga",
+      "typescript-fsa"
+    ]
+    const devDependencies = [
+      "@types/immutable",
+      "@types/react",
+      "@types/react-native",
+      "@types/react-redux",
+      "@types/redux-saga",
+      "@types/redux",
+      "@types/redux-immutable",
+      "rimraf",
+      "tslint",
+      "tslint-react",
+      "typescript",
+    ]
 
+    if (this.options.yarn) {
+      this.yarnInstall(dependencies)
+      this.yarnInstall(devDependencies, { "dev": true })
+    } else {
+      this.npmInstall(dependencies, {"save": true})
+      this.npmInstall(devDependencies, { "save-dev": true })
+    }
   }
 
   _copyEnterPoint() {
