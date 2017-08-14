@@ -34,6 +34,20 @@ Select project options.
 
 Generator will install dependencies and create file structure in your project (see below).
 
+Build project
+
+```bash
+yarn run build
+# or
+yarn run watch
+```
+
+Start project
+
+```bash
+yarn start
+```
+
 ### Included dependencies
 
 #### normal babel project
