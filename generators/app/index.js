@@ -28,7 +28,7 @@ module.exports = class extends Generator {
       type: "checkbox",
       name: "options",
       message: "Select options for your project",
-      choices: [ YARN, EXPO, TYPESCRIPT ],
+      choices: [YARN, EXPO, TYPESCRIPT],
     })
     return this.prompt(prompts)
       .then((answers) => {
@@ -48,8 +48,18 @@ module.exports = class extends Generator {
   }
 
   configuring() {
-    this.config.set("typescript", this.options.typescript)
-    this.config.save()
+    if (this.options.typescript) {
+      // 刪除 typescript 不需要的 .flowconfig 
+      this.fs.delete(this.destinationPath(".flowconfig"))
+
+      // 加入 tsc clean build watch scripts 到 packaga.json
+      const packageJson = this.fs.readJSON(this.destinationPath("package.json"))
+      packageJson.scripts.tsc = "tsc --pretty"
+      packageJson.scripts.clean = "rimraf build"
+      packageJson.scripts.build = "npm run clean && yarn run tsc --"
+      packageJson.scripts.watch = "npm run build -- -w"
+      this.fs.writeJSON(this.destinationPath("package.json"), packageJson)
+    }
   }
 
   writing() {
@@ -82,7 +92,7 @@ module.exports = class extends Generator {
     if (this.options.yarn) {
       this.yarnInstall(dependencies)
     } else {
-      this.npmInstall(dependencies, {"save": true})
+      this.npmInstall(dependencies, { "save": true })
     }
   }
 
@@ -114,7 +124,7 @@ module.exports = class extends Generator {
       this.yarnInstall(dependencies)
       this.yarnInstall(devDependencies, { "dev": true })
     } else {
-      this.npmInstall(dependencies, {"save": true})
+      this.npmInstall(dependencies, { "save": true })
       this.npmInstall(devDependencies, { "save-dev": true })
     }
   }
