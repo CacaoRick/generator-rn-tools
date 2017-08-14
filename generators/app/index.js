@@ -1,13 +1,21 @@
-const mkdirp = require("mkdirp");
+const mkdirp = require("mkdirp")
+const chalk = require("chalk")
 const Generator = require("yeoman-generator")
 
 module.exports = class extends Generator {
 	constructor(args, options) {
 		super(args, options)
 
+		this.packageJson = this.fs.readJSON(this.destinationPath("package.json"))
+		if (!this.packageJson || !(this.packageJson.dependencies && this.packageJson.dependencies["react-native"])) {
+			console.log(chalk.red("There is not a react-native project, please use create-react-native-app or react-native init to create one."))
+			console.log(chalk.blue("https://facebook.github.io/react-native/docs/getting-started.html"))
+			process.exit()
+		}
+
 		this.argument("appname", { type: String, required: false, default: this.determineAppname() })
-		this.argument("yarn", { type: Boolean, required: false, default: false })
-		this.argument("expo", { type: Boolean, required: false, default: false })
+		this.argument("yarn", { type: Boolean, required: false, default: this.fs.exists(this.destinationPath("yarn.lock")) })
+		this.argument("expo", { type: Boolean, required: false, default: (this.packageJson.dependencies && this.packageJson.dependencies["expo"]) ? true : false })
 		this.argument("typescript", { type: Boolean, required: false, default: false })
 	}
 
@@ -16,7 +24,7 @@ module.exports = class extends Generator {
 		prompts.push({
 			type: "input",
 			name: "appname",
-			message: "Project name",
+			message: "Project name:",
 			default: this.determineAppname(),
 		})
 
@@ -25,25 +33,14 @@ module.exports = class extends Generator {
 		const TYPESCRIPT = "typescript, use typescript"
 
 		prompts.push({
-			type: "checkbox",
-			name: "options",
-			message: "Select options for your project",
-			choices: [YARN, EXPO, TYPESCRIPT],
+			type: "confirm",
+			name: "typescript",
+			message: "Use typescript?",
 		})
 		return this.prompt(prompts)
 			.then((answers) => {
 				this.options.appname = answers.appname
-				answers.options.forEach((option) => {
-					if (option === YARN) {
-						this.options.yarn = true
-					}
-					if (option === EXPO) {
-						this.options.expo = true
-					}
-					if (option === TYPESCRIPT) {
-						this.options.typescript = true
-					}
-				});
+				this.options.typescript = answers.typescript
 			})
 	}
 
@@ -53,12 +50,11 @@ module.exports = class extends Generator {
 			this.fs.delete(this.destinationPath(".flowconfig"))
 
 			// 加入 tsc clean build watch scripts 到 packaga.json
-			const packageJson = this.fs.readJSON(this.destinationPath("package.json"))
-			packageJson.scripts.tsc = "tsc --pretty"
-			packageJson.scripts.clean = "rimraf build"
-			packageJson.scripts.build = "npm run clean && yarn run tsc --"
-			packageJson.scripts.watch = "npm run build -- -w"
-			this.fs.writeJSON(this.destinationPath("package.json"), packageJson)
+			this.packageJson.scripts.tsc = "tsc --pretty"
+			this.packageJson.scripts.clean = "rimraf build"
+			this.packageJson.scripts.build = "npm run clean && yarn run tsc --"
+			this.packageJson.scripts.watch = "npm run build -- -w"
+			this.fs.writeJSON(this.destinationPath("package.json"), this.packageJson)
 
 			// 複製 tsconfig.json
 			this.fs.copy(
@@ -95,6 +91,23 @@ module.exports = class extends Generator {
 		} else {
 			this._installDependencies()
 		}
+	}
+
+	end() {
+		const pkg = this.options.yarn ? "yarn" : "npm"
+		console.log("")
+		console.log("Success!")
+		console.log("")
+		if (this.options.typescript) {
+			console.log(chalk.cyan(`  ${pkg} run build`))
+			console.log("    Clean build folder and Build your project.")
+			console.log("")
+			console.log(chalk.cyan(`  ${pkg} run watch`))
+			console.log("    Watch your project, if file change rebuild.")
+			console.log("")
+		}
+		console.log(chalk.cyan(`  ${pkg} start`))
+		console.log("    Start dev server.")
 	}
 
 	_installDependencies() {
