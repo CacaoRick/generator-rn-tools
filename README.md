@@ -21,16 +21,22 @@ react-native init appname
 `cd` to your project.
 Create file structure.
 ```bash
-yo rn-tool appname
+yo rn-tool
 ```
-Select project type.
 
-![](/images/prompt-list.png)
+Input project name.
+
+![](/images/appname.png)
+
+Select project options.
+
+![](/images/options.png)
 
 Generator will install dependencies and create file structure in your project (see below).
 
 ### Included dependencies
 
+#### normal babel project
 * immutable
 * prop-types
 * react-native-router-flux
@@ -39,8 +45,31 @@ Generator will install dependencies and create file structure in your project (s
 * redux-immutable
 * redux-thunk
 
+#### typescript project
+* immutable
+* react-native-router-flux
+* react-redux
+* redux
+* redux-immutable
+* redux-saga
+* typescript-fsa
+
+devDependencies:
+* @types/immutable
+* @types/react
+* @types/react-native
+* @types/react-redux
+* @types/redux-saga
+* @types/redux
+* @types/redux-immutable
+* rimraf
+* tslint
+* tslint-react
+* typescript
+
 ### File structure
 
+#### normal babel project
 ```text
 ├─src/
 │   ├─components/
@@ -65,6 +94,40 @@ Generator will install dependencies and create file structure in your project (s
 │        ├─actions.js
 │        └─reducers.js
 ├─.eslintrc
+├─App.js            <-- Only in Expo App
+├─index.android.js  <-- Only in Standard App
+└─index.ios.js      <-- Only in Standard App
+```
+
+#### typescript project
+```text
+├─src/
+│   ├─components/
+│   ├─constants/
+│   │    ├─Colors.ts
+│   │    └─StorageKey.ts
+│   ├─containers/
+│   │    ├─AppRoot/
+│   │    │    └─index.tsx
+│   │    ├─AppRouter/
+│   │    │    └─index.tsx
+│   │    └─Main/
+│   │         └─index.tsx
+│   ├─images/
+│   ├─lib/
+│   │    └─configureStore.ts
+│   ├─models/
+│   ├─redux/
+│   │    ├─main/
+│   │    │    ├─mainActions.ts
+│   │    │    ├─mainReducers.ts
+│   │    │    └─mainSaga.ts
+│   │    ├─actions.ts
+│   │    ├─reducer.ts
+│   │    └─sagas.ts
+│   └─index.d.ts
+├─tsconfig.json
+├─tslint.json
 ├─App.js            <-- Only in Expo App
 ├─index.android.js  <-- Only in Standard App
 └─index.ios.js      <-- Only in Standard App
