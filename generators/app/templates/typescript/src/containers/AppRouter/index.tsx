@@ -1,5 +1,4 @@
-import React from "react"
-import PropTypes from "prop-types"
+import * as React from "react"
 import { connect } from "react-redux"
 import { Router, Scene } from "react-native-router-flux"
 import Main from "../Main"
@@ -15,8 +14,9 @@ class AppRouter extends React.Component {
     )
   }
 }
-const mapStateToProps = (state) => {
-  //const { } = state.get().toJS()
+
+const mapStateToProps = (state: ImmutableState) => {
+  //const { ooo } = state.get().toJS().main
   return {}
 }
 

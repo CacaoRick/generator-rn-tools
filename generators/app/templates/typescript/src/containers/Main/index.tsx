@@ -1,13 +1,17 @@
-import React from "react"
-import PropTypes from "prop-types"
+import * as React from "react"
+import * as ReactNative from "react-native"
 import { connect } from "react-redux"
 import { StyleSheet, View, Text } from "react-native"
 
-class Main extends React.Component {
-  static propTypes = {
-    // prop: PropTypes.any,
-  }
+interface Props {
 
+}
+
+interface State {
+
+}
+
+class Main extends React.Component<Props, State> {
   render() {
     return (
       <View style={styles.container}>
@@ -26,8 +30,8 @@ const styles = StyleSheet.create({
 })
 
 
-const mapStateToProps = (state) => {
-  //const { } = state.get().toJS()
+const mapStateToProps = (state: ImmutableState) => {
+  //const { ooo } = state.get().toJS().main
   return {}
 }
 
