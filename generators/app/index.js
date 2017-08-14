@@ -54,13 +54,19 @@ module.exports = class extends Generator {
 
   writing() {
     if (this.options.typescript) {
-      this._installDependencies()
-      this._constructFileStruct()
-    } else {
-      this._installTypescriptDependencies()
       this._constructTypescriptFileStruct()
+    } else {
+      this._constructFileStruct()
     }
     this._copyEnterPoint()
+  }
+
+  install() {
+    if (this.options.typescript) {
+      this._installTypescriptDependencies()
+    } else {
+      this._installDependencies()
+    }
   }
 
   _installDependencies() {
