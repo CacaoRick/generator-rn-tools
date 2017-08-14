@@ -13,15 +13,15 @@ npm install -g generator-rn-tool
 Create project.
 
 ```bash
-create-react-native-app appName
+create-react-native-app appname
 # or
-react-native init appName
+react-native init appname
 ```
 
 `cd` to your project.
 Create file structure.
 ```bash
-yo rn-tool appName
+yo rn-tool appname
 ```
 Select project type.
 
