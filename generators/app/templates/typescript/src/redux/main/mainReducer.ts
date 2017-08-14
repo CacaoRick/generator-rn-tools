@@ -8,7 +8,7 @@ const INITIAL_STATE = Record({
 })
 
 export default (state = new INITIAL_STATE(), action: Action) => {
-  // if (isType(action, actions.xxx)) {
+	// if (isType(action, actions.xxx)) {
 	// 	return state.merge(action.payload.ooo)
 	// }
 

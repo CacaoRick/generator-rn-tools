@@ -2,7 +2,7 @@ import { combineReducers } from "redux-immutable";
 import main from "./main/mainReducer"
 
 const rootReducer = combineReducers({
-  main,
+	main,
 })
 
 export default rootReducer

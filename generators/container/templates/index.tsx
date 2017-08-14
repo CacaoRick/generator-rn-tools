@@ -11,11 +11,11 @@ interface State {
 
 }
 
-class Main extends React.Component<Props, State> {
+class <%= containerName %> extends React.Component<Props, State> {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text>{"Hello React Native"}</Text>
+				<Text>{"Hello <%= containerName %>"}</Text>
 			</View>
 		)
 	}
@@ -39,4 +39,4 @@ const mapDispatchToProps = {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main)
+export default connect(mapStateToProps, mapDispatchToProps)(<%= containerName %>)

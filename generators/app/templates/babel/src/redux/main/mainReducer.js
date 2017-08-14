@@ -6,12 +6,12 @@ const InitialState = Record({
 })
 
 export default (state = new InitialState, action) => {
-  switch (action.type) {
-    // case ActionTypes.ACTION_TYPE: {
-    // 	return state.setIn([""], action.payload)
-    //}
-    default: {
-      return state
-    }
-  }
+	switch (action.type) {
+		// case ActionTypes.ACTION_TYPE: {
+		// 	return state.setIn([""], action.payload)
+		//}
+		default: {
+			return state
+		}
+	}
 }

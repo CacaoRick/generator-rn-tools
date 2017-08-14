@@ -5,19 +5,19 @@ import { Router, Scene } from "react-native-router-flux"
 import Main from "../Main"
 
 class AppRouter extends React.Component {
-  render() {
-    return (
-      <Router>
-        <Scene key="root">
-          <Scene key="Main" component={Main} initial />
-        </Scene>
-      </Router>
-    )
-  }
+	render() {
+		return (
+			<Router>
+				<Scene key="root">
+					<Scene key="Main" component={Main} initial />
+				</Scene>
+			</Router>
+		)
+	}
 }
 const mapStateToProps = (state) => {
-  //const { } = state.get().toJS()
-  return {}
+	//const { } = state.get().toJS()
+	return {}
 }
 
 const mapDispatchToProps = {

@@ -1,12 +1,16 @@
-import React from "react"
-import PropTypes from "prop-types"
+import * as React from "react"
+import * as ReactNative from "react-native"
 import { StyleSheet, View, Text } from "react-native"
 
-export default class <%= componentName %> extends React.Component {
-	static propTypes = {
-		// prop: PropTypes.any,
-	}
+interface Props {
 
+}
+
+interface State {
+
+}
+
+export default class <%= componentName %> extends React.Component<Props, State> {
 	render() {
 		return (
 			<View style={styles.container}>

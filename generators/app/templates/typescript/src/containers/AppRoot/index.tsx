@@ -5,14 +5,14 @@ import rootSaga from "../../redux/sagas"
 import configureStore from "../../lib/configureStore"
 
 export default class AppRoot extends React.Component {
-  render() {
-    const store = configureStore()
-    store.runSaga(rootSaga)
-    
-    return (
-      <Provider store={store}>
-        <AppRouter />
-      </Provider>
-    )
-  }
+	render() {
+		const store = configureStore()
+		store.runSaga(rootSaga)
+		
+		return (
+			<Provider store={store}>
+				<AppRouter />
+			</Provider>
+		)
+	}
 }
