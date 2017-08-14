@@ -1,11 +1,11 @@
-# generator-rn-tool
+# generator-rn-tools
 [Yeoman](http://yeoman.io) generator for [React Native](https://facebook.github.io/react-native/), Help you install npm dependencies and generator file structure in project which created by [react-native-cli](https://facebook.github.io/react-native/docs/getting-started.html#installing-dependencies) or [create-react-native-app](https://facebook.github.io/react-native/docs/getting-started.html).
 
 ## Installation
 
 ```bash
 npm install -g yo
-npm install -g generator-rn-tool
+npm install -g generator-rn-tools
 ```
 
 ## Create React Native project
@@ -21,7 +21,7 @@ react-native init appname
 `cd` to your project.
 Create file structure.
 ```bash
-yo rn-tool
+yo rn-tools
 ```
 
 Generator will ask you project name and decide whether to use typescript.
@@ -154,7 +154,7 @@ If you are in typescript project, generator will add some scripts to package.jso
 Create a component in `src/components/index.js`.
 
 ```bash
-yo rn-tool:component componentName
+yo rn-tools:component componentName
 ```
 
 ### Container
@@ -162,5 +162,5 @@ yo rn-tool:component componentName
 Create a component in `src/containers/containerName/index.js`, export with react-redux connect().
 
 ```bash
-yo rn-tool:container containerName
+yo rn-tools:container containerName
 ```

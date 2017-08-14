@@ -1,5 +1,5 @@
 {
-  "name": "generator-rn-tool",
+  "name": "generator-rn-tools",
   "version": "0.2.0",
   "description": "Yeoman generator for React Native",
   "license": "MIT",
@@ -13,10 +13,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/CacaoRick/generator-rn-tool"
+    "url": "https://github.com/CacaoRick/generator-rn-tools"
   },
   "bugs": {
-    "url": "https://github.com/CacaoRick/generator-rn-tool/issues"
+    "url": "https://github.com/CacaoRick/generator-rn-tools/issues"
   },
   "files": [
     "generators"
