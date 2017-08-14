@@ -24,15 +24,8 @@ Create file structure.
 yo rn-tool
 ```
 
-Input project name.
-
-![](/images/appname.png)
-
-Select project options.
-
-![](/images/options.png)
-
-Generator will install dependencies and create file structure in your project (see below).
+Generator will ask you project name and decide whether to use typescript.
+Then install dependencies and create file structure in your project (see below) According to your options.
 
 Build project
 
