@@ -59,6 +59,24 @@ module.exports = class extends Generator {
       packageJson.scripts.build = "npm run clean && yarn run tsc --"
       packageJson.scripts.watch = "npm run build -- -w"
       this.fs.writeJSON(this.destinationPath("package.json"), packageJson)
+
+      // 複製 tsconfig.json
+      this.fs.copy(
+        this.templatePath("tsconfig.json"),
+        this.destinationPath("tsconfig.json")
+      )
+
+      // 複製 tslint.json
+      this.fs.copy(
+        this.templatePath("tslint.json"),
+        this.destinationPath("tslint.json")
+      )
+    } else {
+      // 複製 eslint config
+      this.fs.copy(
+        this.templatePath(".eslintrc"),
+        this.destinationPath(".eslintrc")
+      )
     }
   }
 
@@ -163,17 +181,10 @@ module.exports = class extends Generator {
       this.destinationPath("src")
     )
 
-    // 複製 eslint confit
-    this.fs.copy(
-      this.templatePath("babel/.eslintrc"),
-      this.destinationPath(".eslintrc")
-    )
-
     // 建立空資料夾
     mkdirp("src/components")
     mkdirp("src/images")
     mkdirp("src/lib")
-    mkdirp("src/models")
   }
 
   _constructTypescriptFileStruct() {
@@ -182,5 +193,9 @@ module.exports = class extends Generator {
       this.templatePath("typescript/src"),
       this.destinationPath("src")
     )
+
+    // 建立空資料夾
+    mkdirp("images")
+    mkdirp("src/components")
   }
 }
