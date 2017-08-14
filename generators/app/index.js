@@ -99,18 +99,18 @@ module.exports = class extends Generator {
 		console.log("Success!")
 		console.log("")
 		if (this.options.typescript) {
-			console.log(chalk.cyan(`  Build your project`))
-			console.log("    ${pkg} run build")
+			console.log(chalk.cyan("  Build your project"))
+			console.log(`    ${pkg} run build`)
 			console.log("")
-			console.log(chalk.cyan(`  Watch file change then rebuild your project`))
-			console.log("    ${pkg} run watch")
+			console.log(chalk.cyan("  Watch file change then rebuild your project"))
+			console.log(`    ${pkg} run watch`)
 			console.log("")
 		}
 		if (this.options.expo) {
-			console.log(chalk.cyan(`  ${pkg} start`))
-			console.log("    Start dev server.")
+			console.log(chalk.cyan("  Start dev server"))
+			console.log(`    ${pkg} start`)
 		} else {
-			console.log(chalk.cyan(`  To run your app`))
+			console.log(chalk.cyan("  Run your app"))
 			console.log("    react-native run-ios")
 			console.log("    react-native run-android")
 			console.log("    or run ios/android project in XCode/Android Studio")
