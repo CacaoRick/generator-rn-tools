@@ -1,5 +1,5 @@
 import React from "react"
-import AppRoot from "./src/containers/AppRoot"
+import AppRoot from "./<%= path %>/containers/AppRoot"
 
 export default class App extends React.Component {
   render() {

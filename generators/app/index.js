@@ -57,6 +57,7 @@ module.exports = class extends Generator {
       this._installTypescriptDependencies()
       this._constructTypescriptFileStruct()
     }
+    this._copyEnterPoint()
   }
 
   _installDependencies() {
@@ -75,26 +76,34 @@ module.exports = class extends Generator {
 
   }
 
-  _constructFileStruct() {
-    // 複製 enterpoint
+  _copyEnterPoint() {
     if (this.options.expo) {
       this.fs.copy(
-        this.templatePath("babel/App.js"),
-        this.destinationPath("App.js")
+        this.templatePath("App.js"),
+        this.destinationPath("App.js"),
+        { path: this.options.typescript ? "build" : "src" }
       )
     } else {
       this.fs.copy(
-        this.templatePath("babel/index.android.js"),
+        this.templatePath("index.android.js"),
         this.destinationPath("index.android.js"),
-        { appname: this.options.appname }
+        {
+          appname: this.options.appname,
+          path: this.options.typescript ? "build" : "src",
+        }
       )
       this.fs.copy(
-        this.templatePath("babel/index.ios.js"),
+        this.templatePath("index.ios.js"),
         this.destinationPath("index.ios.js"),
-        { appname: this.options.appname }
+        {
+          appname: this.options.appname,
+          path: this.options.typescript ? "build" : "src",
+        }
       )
     }
+  }
 
+  _constructFileStruct() {
     // 複製 src 資料夾
     this.fs.copy(
       this.templatePath("babel/src"),
@@ -115,24 +124,6 @@ module.exports = class extends Generator {
   }
 
   _constructTypescriptFileStruct() {
-    if (this.options.expo) {
-      this.fs.copy(
-        this.templatePath("typescript/App.js"),
-        this.destinationPath("App.js")
-      )
-    } else {
-      this.fs.copy(
-        this.templatePath("typescript/index.android.js"),
-        this.destinationPath("index.android.js"),
-        { appname: this.options.appname }
-      )
-      this.fs.copy(
-        this.templatePath("typescript/index.ios.js"),
-        this.destinationPath("index.ios.js"),
-        { appname: this.options.appname }
-      )
-    }
-
     // 複製 src 資料夾
     this.fs.copy(
       this.templatePath("typescript/src"),
