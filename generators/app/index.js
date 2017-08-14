@@ -5,7 +5,7 @@ module.exports = class extends Generator {
   constructor(args, options) {
     super(args, options)
 
-    this.argument("appname", { type: String, required: false })
+    this.argument("appname", { type: String, required: false, default: this.determineAppname() })
     this.argument("expo", { type: Boolean, required: false, default: false })
     this.argument("typescript", { type: Boolean, required: false, default: false })
   }
@@ -15,13 +15,12 @@ module.exports = class extends Generator {
     const STANDARD = "Standard (react-native-cli)"
 
     const prompts = []
-    if (!this.options.appname) {
-      prompts.push({
-        type: "input",
-        name: "appname",
-        message: "Project name",
-      })
-    }
+    prompts.push({
+      type: "input",
+      name: "appname",
+      message: "Project name",
+      default: this.determineAppname(),
+    })
 
     prompts.push({
       type: "checkbox",
@@ -40,12 +39,11 @@ module.exports = class extends Generator {
             this.options.typescript = true
           }
         });
-        console.log(this.options)
       })
   }
 
   configuring() {
-    this.config.set(typescript, this.options.typescript)
+    this.config.set("typescript", this.options.typescript)
     this.config.save()
   }
 
