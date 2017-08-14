@@ -67,6 +67,14 @@ devDependencies:
 * tslint-react
 * typescript
 
+### Add scripts to package.json
+
+If you are in typescript project, generator will add some scripts to package.json
+* tsc: `tsc --pretty`
+* clean: `rimraf build`
+* build: `yarn run clean && yarn run tsc --`
+* watch: `npm run build -- -w`
+
 ### File structure
 
 #### normal babel project
@@ -101,6 +109,8 @@ devDependencies:
 
 #### typescript project
 ```text
+├─build/					<-- After npm run build or npm run watch
+├─images/
 ├─src/
 │   ├─components/
 │   ├─constants/
@@ -113,10 +123,8 @@ devDependencies:
 │   │    │    └─index.tsx
 │   │    └─Main/
 │   │         └─index.tsx
-│   ├─images/
 │   ├─lib/
 │   │    └─configureStore.ts
-│   ├─models/
 │   ├─redux/
 │   │    ├─main/
 │   │    │    ├─mainActions.ts
