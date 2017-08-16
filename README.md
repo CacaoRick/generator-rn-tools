@@ -1,4 +1,5 @@
-# generator-rn-tools
+# generator-rn-tools [![npm version](https://badge.fury.io/js/generator-rn-tools.svg)](https://badge.fury.io/js/generator-rn-tools)
+
 [Yeoman](http://yeoman.io) generator for [React Native](https://facebook.github.io/react-native/), Help you install npm dependencies and generator file structure in project which created by [react-native-cli](https://facebook.github.io/react-native/docs/getting-started.html#installing-dependencies) or [create-react-native-app](https://facebook.github.io/react-native/docs/getting-started.html).
 
 ## Installation
