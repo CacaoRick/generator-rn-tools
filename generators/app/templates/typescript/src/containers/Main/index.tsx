@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
 	},
 })
 
-
 const mapStateToProps = (state: ImmutableState) => {
 	// const { ooo } = state.get().toJS().main
 	return {}
