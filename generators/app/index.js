@@ -91,23 +91,17 @@ module.exports = class extends Generator {
 			this.fs.copyTpl(
 				this.templatePath("App.js"),
 				this.destinationPath("App.js"),
-				{ path: this.options.typescript ? "build" : "src" }
+				{
+					path: "src",
+				}
 			)
 		} else {
 			this.fs.copyTpl(
-				this.templatePath("index.android.js"),
-				this.destinationPath("index.android.js"),
+				this.templatePath("index.js"),
+				this.destinationPath("index.js"),
 				{
 					appname: this.options.appname,
-					path: this.options.typescript ? "build" : "src",
-				}
-			)
-			this.fs.copyTpl(
-				this.templatePath("index.ios.js"),
-				this.destinationPath("index.ios.js"),
-				{
-					appname: this.options.appname,
-					path: this.options.typescript ? "build" : "src",
+					path: "src",
 				}
 			)
 		}
