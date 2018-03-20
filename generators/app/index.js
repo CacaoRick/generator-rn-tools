@@ -91,9 +91,7 @@ module.exports = class extends Generator {
 			this.fs.copyTpl(
 				this.templatePath("App.js"),
 				this.destinationPath("App.js"),
-				{
-					path: "src",
-				}
+				{}
 			)
 		} else {
 			this.fs.copyTpl(
@@ -101,7 +99,6 @@ module.exports = class extends Generator {
 				this.destinationPath("index.js"),
 				{
 					appname: this.options.appname,
-					path: "src",
 				}
 			)
 		}

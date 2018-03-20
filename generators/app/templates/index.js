@@ -1,4 +1,4 @@
 import { AppRegistry } from "react-native"
-import AppRoot from "./<%= path %>/containers/AppRoot"
+import AppRoot from "./src/containers/AppRoot"
 
 AppRegistry.registerComponent("<%= appname %>", () => AppRoot)
