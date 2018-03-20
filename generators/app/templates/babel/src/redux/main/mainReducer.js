@@ -1,5 +1,5 @@
 import { Record } from "immutable"
-import * as ActionTypes from "../../constants/ActionTypes"
+import ActionTypes from "../../constants/ActionTypes"
 
 const InitialState = Record({
 
