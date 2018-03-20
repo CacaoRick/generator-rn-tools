@@ -119,16 +119,4 @@ module.exports = class extends Generator {
 		mkdirp("src/images")
 		mkdirp("src/lib")
 	}
-
-	_constructTypescriptFileStruct() {
-		// 複製 src 資料夾
-		this.fs.copy(
-			this.templatePath("typescript/src"),
-			this.destinationPath("src")
-		)
-
-		// 建立空資料夾
-		mkdirp("images")
-		mkdirp("src/components")
-	}
 }
