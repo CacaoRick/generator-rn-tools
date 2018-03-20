@@ -87,13 +87,12 @@ module.exports = class extends Generator {
 	}
 
 	_copyEnterPoint() {
-		if (this.options.expo) {
-			this.fs.copyTpl(
-				this.templatePath("App.js"),
-				this.destinationPath("App.js"),
-				{}
-			)
-		} else {
+		this.fs.copyTpl(
+			this.templatePath("App.js"),
+			this.destinationPath("App.js"),
+			{}
+		)
+		if (!this.options.expo) {
 			this.fs.copyTpl(
 				this.templatePath("index.js"),
 				this.destinationPath("index.js"),
