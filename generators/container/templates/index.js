@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = (state) => {
-	// const { } = state.get().toJS()
+	
 	return {}
 }
 
