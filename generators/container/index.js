@@ -10,7 +10,7 @@ module.exports = class extends Generator {
 
 	prompting() {
 		const prompts = []
-		if (!this.options.componentName) {
+		if (!this.options.containerName) {
 			prompts.push({
 				type: "input",
 				name: "containerName",
@@ -38,8 +38,9 @@ module.exports = class extends Generator {
 
 	end() {
 		console.log("")
-		console.log(chalk.cyan("  TODO: Add Scene to AppRouter"))
+		console.log(chalk.cyan("  TODO: Add Scene to src/containers/AppRouter/index.js"))
 		console.log(`\timport ${this.options.containerName} from "../${this.options.containerName}"`)
+		console.log("\t...")
 		console.log(`\t<Scene key="${this.options.containerName}" component={${this.options.containerName}} />`)
 	}
 }
