@@ -16,7 +16,7 @@ class AppRouter extends React.Component {
 	}
 }
 const mapStateToProps = (state) => {
-	// const { } = state.get().toJS()
+	
 	return {}
 }
 
