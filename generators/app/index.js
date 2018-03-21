@@ -71,15 +71,17 @@ module.exports = class extends Generator {
 		console.log("")
 		console.log("Success!")
 		console.log("")
-		console.log(chalk.cyan("  Start dev server"))
+		console.log(chalk.cyan("  Start packager server"))
 		console.log(`    ${pkg} start`)
-		if (this.options.expo) {
-			
-		} else {
-			console.log(chalk.cyan("  Run your app"))
+		if (!this.options.expo) {
+			console.log(chalk.cyan("  Run on iOS"))
 			console.log("    react-native run-ios")
+			console.log("    - or -")
+			console.log("    Open ios/nativeProject.xcodeproj in Xcode")
+			console.log("    Hit the Run button")
+			console.log(chalk.cyan("  Run on Android"))
+			console.log("    Have an Android emulator running, or a device connected")
 			console.log("    react-native run-android")
-			console.log("    or run ios/android project in XCode/Android Studio")
 		}
 	}
 
