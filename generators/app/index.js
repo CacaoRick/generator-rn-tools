@@ -29,9 +29,6 @@ module.exports = class extends Generator {
 			default: this.determineAppname(),
 		})
 
-		const YARN = "yarn, use yarn add instead npm install?"
-		const EXPO = "expo, this project is create by create-react-native-app?"
-
 		prompts.push({
 			type: "list",
 			name: "routerV3",
