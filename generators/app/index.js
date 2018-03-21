@@ -14,8 +14,10 @@ module.exports = class extends Generator {
 		}
 
 		this.argument("appname", { type: String, required: false, default: this.determineAppname() })
-		this.argument("yarn", { type: Boolean, required: false, default: this.fs.exists(this.destinationPath("yarn.lock")) })
-		this.argument("expo", { type: Boolean, required: false, default: (this.packageJson.dependencies && this.packageJson.dependencies["expo"]) ? true : false })
+		this.argument("routerV3", { type: Boolean, required: false, default: true })
+
+		this.options.yarn = this.fs.exists(this.destinationPath("yarn.lock"))
+		this.options.expo = this.packageJson.dependencies["expo"]
 	}
 
 	prompting() {
@@ -30,9 +32,21 @@ module.exports = class extends Generator {
 		const YARN = "yarn, use yarn add instead npm install?"
 		const EXPO = "expo, this project is create by create-react-native-app?"
 
+		prompts.push({
+			type: "list",
+			name: "routerV3",
+			message: "react-native-router-flux version:",
+			choices: [
+				"v3",
+				"v4 (beta), based on React Navigation"
+			],
+			default: 0,
+		})
+
 		return this.prompt(prompts)
 			.then((answers) => {
 				this.options.appname = answers.appname
+				this.options.routerV3 = answers.routerV3 === "v3"
 			})
 	}
 
@@ -58,9 +72,10 @@ module.exports = class extends Generator {
 		console.log("")
 		console.log("Success!")
 		console.log("")
+		console.log(chalk.cyan("  Start dev server"))
+		console.log(`    ${pkg} start`)
 		if (this.options.expo) {
-			console.log(chalk.cyan("  Start dev server"))
-			console.log(`    ${pkg} start`)
+			
 		} else {
 			console.log(chalk.cyan("  Run your app"))
 			console.log("    react-native run-ios")
@@ -73,12 +88,13 @@ module.exports = class extends Generator {
 		const dependencies = [
 			"immutable",
 			"prop-types",
-			"react-native-router-flux",
+			this.options.routerV3 ? "react-native-router-flux@3" : "react-native-router-flux",
 			"react-redux",
 			"redux",
 			"redux-immutable",
 			"redux-thunk"
 		]
+
 		if (this.options.yarn) {
 			this.yarnInstall(dependencies)
 		} else {
@@ -92,15 +108,13 @@ module.exports = class extends Generator {
 			this.destinationPath("App.js"),
 			{}
 		)
-		if (!this.options.expo) {
-			this.fs.copyTpl(
-				this.templatePath("index.js"),
-				this.destinationPath("index.js"),
-				{
-					appname: this.options.appname,
-				}
-			)
-		}
+		this.fs.copyTpl(
+			this.templatePath("index.js"),
+			this.destinationPath("index.js"),
+			{
+				appname: this.options.appname,
+			}
+		)
 	}
 
 	_constructFileStruct() {
