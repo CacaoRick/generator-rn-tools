@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { StyleSheet, View, Text } from "react-native"
+import * as actions from "../../redux/actions"
 
 class <%= containerName %> extends React.Component {
 	static propTypes = {
@@ -27,12 +28,13 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = (state) => {
-	
-	return {}
+	return {
+		// data: state.getIn(["reducer", "data"]),
+	}
 }
 
 const mapDispatchToProps = {
-
+	// action: actions.action,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(<%= containerName %>)
