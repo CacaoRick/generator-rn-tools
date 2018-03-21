@@ -22,13 +22,15 @@ module.exports = class extends Generator {
 
 	prompting() {
 		const prompts = []
-		prompts.push({
-			type: "input",
-			name: "appName",
-			message: "Project name:",
-			default: this.determineAppname(),
-		})
-
+		if (!this.options.expo) {
+			prompts.push({
+				type: "input",
+				name: "appName",
+				message: "Project name:",
+				default: this.determineAppname(),
+			})
+		}
+		
 		prompts.push({
 			type: "list",
 			name: "routerV3",
@@ -40,26 +42,10 @@ module.exports = class extends Generator {
 			default: 0,
 		})
 
-		prompts.push({
-			type: "input",
-			name: "containerName",
-			message: "Main container name:",
-			default: "Main",
-		})
-
-		prompts.push({
-			type: "input",
-			name: "reducerName",
-			message: "Main reducer name:",
-			default: "main",
-		})
-
 		return this.prompt(prompts)
 			.then((answers) => {
 				this.options.appName = answers.appName
 				this.options.routerV3 = answers.routerV3 === "v3"
-				this.options.containerName = answers.containerName
-				this.options.reducerName = answers.reducerName
 			})
 	}
 
@@ -73,8 +59,6 @@ module.exports = class extends Generator {
 
 	writing() {
 		this._constructFileStruct()
-		// this._constructRedux()
-		// this._constructContainer()
 		this._copyEnterPoint()
 	}
 
@@ -123,13 +107,15 @@ module.exports = class extends Generator {
 			this.destinationPath("App.js"),
 			{}
 		)
-		this.fs.copyTpl(
-			this.templatePath("index.js"),
-			this.destinationPath("index.js"),
-			{
-				appName: this.options.appName,
-			}
-		)
+		if (!this.options.expo) {
+			this.fs.copyTpl(
+				this.templatePath("index.js"),
+				this.destinationPath("index.js"),
+				{
+					appName: this.options.appName,
+				}
+			)
+		}
 	}
 
 	_constructFileStruct() {
