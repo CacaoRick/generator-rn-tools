@@ -20,13 +20,37 @@
       "experimentalObjectRestSpread": true
     }
   },
+  "globals": {
+		"navigator": true,
+		"fetch": true
+	},
   "rules": {
-    "semi": 0,
+    "indent": [
+			"error",
+			"tab",
+			{
+				"SwitchCase": 1
+			}
+		],
+		"semi": [
+			"error",
+			"never"
+		],
+		"eol-last": [
+			"error",
+			"always"
+		],
     "no-console": 0,
     "comma-dangle": [
-      1,
-      "always-multiline"
-    ],
+			"warn",
+			{
+				"arrays": "always-multiline",
+				"objects": "always-multiline",
+				"imports": "always-multiline",
+				"exports": "ignore",
+				"functions": "ignore"
+			}
+		],
     "react/prop-types": 1,
     "react-native/no-unused-styles": 1,
     "react-native/split-platform-components": 1,
