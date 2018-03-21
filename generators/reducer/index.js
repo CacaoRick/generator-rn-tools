@@ -46,9 +46,7 @@ module.exports = class extends Generator {
 
 	end() {
 		console.log("")
-		console.log("Success!")
-		console.log("")
 		console.log(chalk.cyan("  TODO:"))
-		console.log(`    Add ${this.options.reducerName} reducer to src/redux/reducers`)
+		console.log(`\tAdd ${this.options.reducerName} reducer to src/redux/reducers`)
 	}
 }

@@ -1,4 +1,5 @@
 const Generator = require("yeoman-generator")
+const chalk = require("chalk")
 
 module.exports = class extends Generator {
 	constructor(args, options) {
@@ -33,5 +34,12 @@ module.exports = class extends Generator {
 			this.destinationPath("src/containers/" + containerName + "/index.js"),
 			{ containerName: containerName }
 		)
+	}
+
+	end() {
+		console.log("")
+		console.log(chalk.cyan("  TODO: Add Scene to AppRouter"))
+		console.log(`\timport ${this.options.containerName} from "../${this.options.containerName}"`)
+		console.log(`\t<Scene key="${this.options.containerName}" component={${this.options.containerName}} />`)
 	}
 }
