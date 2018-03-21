@@ -1,11 +1,11 @@
 import { fromJS } from "immutable"
 import Types from "../../constants/ActionTypes"
 
-const InitialState = fromJS({
+const initialState = fromJS({
 	
 })
 
-export default (state = new InitialState, action) => {
+export default (state = initialState, action) => {
 	switch (action.type) {
 		// case Types.ACTION_TYPE: {
 		// 	return state
