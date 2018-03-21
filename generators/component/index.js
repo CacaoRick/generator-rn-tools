@@ -5,7 +5,6 @@ module.exports = class extends Generator {
 		super(args, options)
 
 		this.argument("componentName", { type: String, required: false })
-		this.argument("typescript", { type: Boolean, required: false, default: this.fs.exists(this.destinationPath("tsconfig.json")) })
 	}
 
 	prompting() {
@@ -28,19 +27,10 @@ module.exports = class extends Generator {
 
 	writing() {
 		let componentName = this.options.componentName;
-
-		if (this.options.typescript) {
-			this.fs.copyTpl(
-				this.templatePath("index.tsx"),
-				this.destinationPath("src/components/" + componentName + ".tsx"),
-				{ componentName: componentName }
-			)
-		} else {
-			this.fs.copyTpl(
-				this.templatePath("index.js"),
-				this.destinationPath("src/components/" + componentName + ".js"),
-				{ componentName: componentName }
-			)
-		}
+		this.fs.copyTpl(
+			this.templatePath("index.js"),
+			this.destinationPath("src/components/" + componentName + ".js"),
+			{ componentName: componentName }
+		)
 	}
 }
