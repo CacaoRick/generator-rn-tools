@@ -13,7 +13,7 @@ module.exports = class extends Generator {
 			prompts.push({
 				type: "input",
 				name: "containerName",
-				message: "What's your component name:",
+				message: "Component name:",
 			})
 		}
 
