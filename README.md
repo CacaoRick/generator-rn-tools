@@ -1,6 +1,6 @@
 # generator-rn-tools [![npm version](https://badge.fury.io/js/generator-rn-tools.svg)](https://badge.fury.io/js/generator-rn-tools)
 
-[Yeoman](http://yeoman.io) generator for [React Native](https://facebook.github.io/react-native/), Help you install npm dependencies and generator file structure in project which created by [react-native-cli](https://facebook.github.io/react-native/docs/getting-started.html#installing-dependencies) or [create-react-native-app](https://facebook.github.io/react-native/docs/getting-started.html).
+[Yeoman](http://yeoman.io) generator for [React Native](https://facebook.github.io/react-native/), to install npm [dependencies](#included-dependencies) and generator file structure in project which created by [react-native-cli](https://facebook.github.io/react-native/docs/getting-started.html#installing-dependencies) or [create-react-native-app](https://facebook.github.io/react-native/docs/getting-started.html) and generator component, container and reducer.
 
 ## Installation
 
@@ -9,7 +9,7 @@ npm install -g yo
 npm install -g generator-rn-tools
 ```
 
-## Create React Native project
+## Usage
 
 Create project.
 
@@ -17,26 +17,19 @@ Create project.
 create-react-native-app appname
 # or
 react-native init appname
+
+cd appname
 ```
 
-`cd` to your project.
 Create file structure.
 ```bash
 yo rn-tools
 ```
 
-Generator will ask you project name and decide whether to use typescript.
-Then install dependencies and create file structure in your project (see below) According to your options.
+Generator will ask you project name (Only in standard project) and which version of `react-native-router-flux` to use.
+Then install [dependencies](#included-dependencies) and create [file structure](#file-structure) in this project.
 
-Build project
-
-```bash
-yarn run build
-# or
-yarn run watch
-```
-
-Start project
+Run packager server
 
 ```bash
 yarn start
@@ -44,44 +37,13 @@ yarn start
 
 ### Included dependencies
 
-#### normal babel project
-* immutable
+* [immutable](https://facebook.github.io/immutable-js/)
 * prop-types
-* react-native-router-flux
-* react-redux
-* redux
-* redux-immutable
-* redux-thunk
-
-#### typescript project
-* immutable
-* react-native-router-flux
-* react-redux
-* redux
-* redux-immutable
-* redux-saga
-* typescript-fsa
-
-devDependencies:
-* @types/immutable
-* @types/react
-* @types/react-native
-* @types/react-redux
-* @types/redux-saga
-* @types/redux
-* @types/redux-immutable
-* rimraf
-* tslint
-* tslint-react
-* typescript
-
-### Add scripts to package.json
-
-If you are in typescript project, generator will add some scripts to package.json
-* tsc: `tsc --pretty`
-* clean: `rimraf build`
-* build: `yarn run clean && yarn run tsc --`
-* watch: `npm run build -- -w`
+* react-native-router-flux ([v4](https://github.com/aksonov/react-native-router-flux), [v3](https://github.com/aksonov/react-native-router-flux/tree/v3))
+* [react-redux](https://github.com/reactjs/react-redux)
+* [redux](https://github.com/reactjs/redux)
+* [redux-immutable](https://github.com/gajus/redux-immutable)
+* [redux-thunk](https://github.com/gaearon/redux-thunk)
 
 ### File structure
 
@@ -91,7 +53,6 @@ If you are in typescript project, generator will add some scripts to package.jso
 │   ├─components/
 │   ├─constants/
 │   │    ├─ActionTypes.js
-│   │    ├─Colors.js
 │   │    └─StorageKey.js
 │   ├─containers/
 │   │    ├─AppRoot/
@@ -103,50 +64,18 @@ If you are in typescript project, generator will add some scripts to package.jso
 │   ├─images/
 │   ├─lib/
 │   ├─models/
-│   └─redux/
-│        ├─main/
-│        │    ├─mainActions.js
-│        │    └─mainReducers.js
-│        ├─actions.js
-│        └─reducers.js
-├─.eslintrc
-├─App.js            <-- Only in Expo App
-├─index.android.js  <-- Only in Standard App
-└─index.ios.js      <-- Only in Standard App
-```
-
-#### typescript project
-```text
-├─build/					<-- After npm run build or npm run watch
-├─images/
-├─src/
-│   ├─components/
-│   ├─constants/
-│   │    ├─Colors.ts
-│   │    └─StorageKey.ts
-│   ├─containers/
-│   │    ├─AppRoot/
-│   │    │    └─index.tsx
-│   │    ├─AppRouter/
-│   │    │    └─index.tsx
-│   │    └─Main/
-│   │         └─index.tsx
-│   ├─lib/
-│   │    └─configureStore.ts
 │   ├─redux/
 │   │    ├─main/
-│   │    │    ├─mainActions.ts
-│   │    │    ├─mainReducers.ts
-│   │    │    └─mainSaga.ts
-│   │    ├─actions.ts
-│   │    ├─reducer.ts
-│   │    └─sagas.ts
-│   └─index.d.ts
-├─tsconfig.json
-├─tslint.json
-├─App.js            <-- Only in Expo App
-├─index.android.js  <-- Only in Standard App
-└─index.ios.js      <-- Only in Standard App
+│   │    │    ├─mainActions.js
+│   │    │    └─mainReducers.js
+│   │    ├─actions.js
+│   │    └─reducers.js
+│   └─Styles/
+│        ├─Colors.js
+│        └─Styles.js
+├─.eslintrc
+├─App.js
+└─index.js  <-- Only in Standard App
 ```
 
 ## Other Generator
@@ -165,3 +94,13 @@ Create a component in `src/containers/containerName/index.js`, export with react
 ```bash
 yo rn-tools:container containerName
 ```
+
+### Reducer
+
+Create a actions, reducers in `src/redux/reducerName`, and auto import in `src/redux/actions` last line, so file must follow [eol-last](https://eslint.org/docs/rules/eol-last) rule (end with a newline).
+
+```bash
+yo rn-tools:reducer reducerName
+```
+
+After file created, need to manually add reducer to `src/redux/reducers`.
