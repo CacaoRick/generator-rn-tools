@@ -1,4 +1,5 @@
 const Generator = require("yeoman-generator")
+const chalk = require("chalk")
 
 module.exports = class extends Generator {
 	constructor(args, options) {
@@ -26,11 +27,25 @@ module.exports = class extends Generator {
 	}
 
 	writing() {
-		let componentName = this.options.componentName;
+		let componentName = this.options.componentName
 		this.fs.copyTpl(
 			this.templatePath("index.js"),
 			this.destinationPath("src/components/" + componentName + ".js"),
 			{ componentName: componentName }
 		)
+	}
+
+	end() {
+		let componentName = this.options.componentName
+		console.log("")
+		console.log(chalk.cyan("  Use in Component"))
+		console.log(`\timport ${componentName} from "./${componentName}"`)
+		console.log("\t...")
+		console.log(`\t<${componentName} />`)
+		console.log("")
+		console.log(chalk.cyan("  Use in Container"))
+		console.log(`\timport ${componentName} from "../../components/${componentName}"`)
+		console.log("\t...")
+		console.log(`\t<${componentName} />`)
 	}
 }
