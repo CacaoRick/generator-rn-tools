@@ -13,7 +13,7 @@ module.exports = class extends Generator {
 			process.exit()
 		}
 
-		this.argument("appname", { type: String, required: false, default: this.determineAppname() })
+		this.argument("appName", { type: String, required: false, default: this.determineAppname() })
 		this.argument("routerV3", { type: Boolean, required: false, default: true })
 
 		this.options.yarn = this.fs.exists(this.destinationPath("yarn.lock"))
@@ -24,7 +24,7 @@ module.exports = class extends Generator {
 		const prompts = []
 		prompts.push({
 			type: "input",
-			name: "appname",
+			name: "appName",
 			message: "Project name:",
 			default: this.determineAppname(),
 		})
@@ -42,24 +42,24 @@ module.exports = class extends Generator {
 
 		prompts.push({
 			type: "input",
-			name: "component",
-			message: "Main component name:",
+			name: "containerName",
+			message: "Main container name:",
 			default: "Main",
 		})
 
 		prompts.push({
 			type: "input",
-			name: "reducer",
+			name: "reducerName",
 			message: "Main reducer name:",
 			default: "main",
 		})
 
 		return this.prompt(prompts)
 			.then((answers) => {
-				this.options.appname = answers.appname
+				this.options.appName = answers.appName
 				this.options.routerV3 = answers.routerV3 === "v3"
-				this.options.component = answers.component
-				this.options.reducer = answers.reducer
+				this.options.containerName = answers.containerName
+				this.options.reducerName = answers.reducerName
 			})
 	}
 
@@ -73,6 +73,8 @@ module.exports = class extends Generator {
 
 	writing() {
 		this._constructFileStruct()
+		// this._constructRedux()
+		// this._constructContainer()
 		this._copyEnterPoint()
 	}
 
@@ -125,7 +127,7 @@ module.exports = class extends Generator {
 			this.templatePath("index.js"),
 			this.destinationPath("index.js"),
 			{
-				appname: this.options.appname,
+				appName: this.options.appName,
 			}
 		)
 	}
