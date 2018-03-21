@@ -1,14 +1,19 @@
-import { Record } from "immutable"
-import ActionTypes from "../../constants/ActionTypes"
+import { fromJS } from "immutable"
+import Types from "../../constants/ActionTypes"
 
-const InitialState = Record({
-
+const InitialState = fromJS({
+	
 })
 
 export default (state = new InitialState, action) => {
 	switch (action.type) {
-		// case ActionTypes.ACTION_TYPE: {
-		// 	return state.setIn([""], action.payload)
+		// case Types.ACTION_TYPE: {
+		// 	return state
+		// 		.set("", fromJS(action.payload))
+		// }
+		// case Types.ACTION_TYPE: {
+		// 	return state
+		// 		.setIn(["", ""], fromJS(action.payload))
 		// }
 		default: {
 			return state
