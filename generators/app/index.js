@@ -44,7 +44,7 @@ module.exports = class extends Generator {
 			type: "input",
 			name: "component",
 			message: "Main component name:",
-			default: "main",
+			default: "Main",
 		})
 
 		prompts.push({
