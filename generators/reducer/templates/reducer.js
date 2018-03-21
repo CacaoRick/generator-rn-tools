@@ -5,8 +5,6 @@ const initialState = fromJS({
 	
 })
 
-// TODO: Add this reducer to ../reducers
-
 export default (state = initialState, action) => {
 	switch (action.type) {
 		// case Types.ACTION_TYPE: {
