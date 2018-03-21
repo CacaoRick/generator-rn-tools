@@ -40,10 +40,26 @@ module.exports = class extends Generator {
 			default: 0,
 		})
 
+		prompts.push({
+			type: "input",
+			name: "component",
+			message: "Main component name:",
+			default: "main",
+		})
+
+		prompts.push({
+			type: "input",
+			name: "reducer",
+			message: "Main reducer name:",
+			default: "main",
+		})
+
 		return this.prompt(prompts)
 			.then((answers) => {
 				this.options.appname = answers.appname
 				this.options.routerV3 = answers.routerV3 === "v3"
+				this.options.component = answers.component
+				this.options.reducer = answers.reducer
 			})
 	}
 
@@ -117,7 +133,7 @@ module.exports = class extends Generator {
 	_constructFileStruct() {
 		// 複製 src 資料夾
 		this.fs.copy(
-			this.templatePath("babel/src"),
+			this.templatePath("src"),
 			this.destinationPath("src")
 		)
 
