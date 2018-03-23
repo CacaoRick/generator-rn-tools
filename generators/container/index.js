@@ -41,6 +41,6 @@ module.exports = class extends Generator {
 		console.log(chalk.cyan("  TODO: Add Scene to src/containers/AppRouter/index.js"))
 		console.log(`\timport ${this.options.containerName} from "../${this.options.containerName}"`)
 		console.log("\t...")
-		console.log(`\t<Scene key="${this.options.containerName}" component={${this.options.containerName}} />`)
+		console.log(`\t<Scene key="${this.options.containerName}" component={${this.options.containerName}} title="${this.options.containerName}" />`)
 	}
 }

@@ -9,7 +9,7 @@ class AppRouter extends React.Component {
 		return (
 			<Router>
 				<Scene key="root">
-					<Scene key="Main" component={Main} initial />
+					<Scene key="Main" component={Main} title="Main" initial />
 				</Scene>
 			</Router>
 		)
