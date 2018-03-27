@@ -75,6 +75,7 @@ yarn start
 │        └─Styles.js
 ├─.eslintrc
 ├─App.js
+├─app.json	<-- Write default androidStatusBar setting into app.json in Expo project
 └─index.js  <-- Only in Standard App
 ```
 
