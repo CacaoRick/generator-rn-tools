@@ -7,6 +7,8 @@ module.exports = class extends Generator {
 		super(args, options)
 
 		this.packageJson = this.fs.readJSON(this.destinationPath("package.json"))
+		this.appJson = this.fs.readJSON(this.destinationPath("app.json"))
+
 		if (!this.packageJson || !(this.packageJson.dependencies && this.packageJson.dependencies["react-native"])) {
 			console.log(chalk.red("There is not a react-native project, please use create-react-native-app or react-native init to create one."))
 			console.log(chalk.blue("https://facebook.github.io/react-native/docs/getting-started.html"))
@@ -60,6 +62,7 @@ module.exports = class extends Generator {
 	writing() {
 		this._constructFileStruct()
 		this._copyEnterPoint()
+		this._writeAppJson()
 	}
 
 	install() {
@@ -100,6 +103,19 @@ module.exports = class extends Generator {
 			this.yarnInstall(dependencies)
 		} else {
 			this.npmInstall(dependencies, { "save": true })
+		}
+	}
+
+	_writeAppJson() {
+		if (this.options.expo && this.appJson) {
+			// 加入預設的 androidStatusBar 避免 status bar 蓋在 APP 內容上
+			this.appJson.expo["androidStatusBar"] = {
+				"barStyle": "light-content",
+				"color": "#000000",
+			}
+
+			// 寫回 app.json
+			this.fs.writeJSON(this.destinationPath("app.json"), this.appJson)
 		}
 	}
 
