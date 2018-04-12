@@ -10,7 +10,7 @@ export default {
 	LightDisabledText: "rgba(255, 255, 255, 0.5)",
 	LightDivider: "rgba(255, 255, 255, 0.12)",
 	DarkPrimaryText: "rgba(0, 0, 0, 0.87)",
-	DarkSecondaryryText: "rgba(0, 0, 0, 0.54)",
+	DarkSecondaryText: "rgba(0, 0, 0, 0.54)",
 	DarkDisabledText: "rgba(0, 0, 0, 0.38)",
 	DarkDivider: "rgba(0, 0, 0, 0.12)",
 	Transparent: "transparent",
