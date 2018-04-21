@@ -1,1 +1,5 @@
-export * from "./main/actions"
+import * as main from "./main/actions"
+
+export default {
+	...main,
+}
