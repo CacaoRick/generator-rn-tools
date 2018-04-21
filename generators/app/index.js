@@ -92,7 +92,7 @@ module.exports = class extends Generator {
 		const dependencies = [
 			"immutable",
 			"prop-types",
-			this.options.routerV3 ? "react-native-router-flux@3" : "react-native-router-flux",
+			this.options.routerV3 ? "react-native-router-flux@3.x" : "react-native-router-flux",
 			"react-redux",
 			"redux",
 			"redux-immutable",
