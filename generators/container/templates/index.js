@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { StyleSheet, View, Text } from "react-native"
-import * as actions from "../../redux/actions"
+import actions from "../../redux/actions"
 
 class <%= containerName %> extends React.Component {
 	static propTypes = {
